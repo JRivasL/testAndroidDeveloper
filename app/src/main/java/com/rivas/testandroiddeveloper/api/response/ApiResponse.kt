@@ -4,7 +4,7 @@ import com.rivas.testandroiddeveloper.utils.extensions.isJson
 import com.rivas.testandroiddeveloper.utils.extensions.toJson
 import retrofit2.Response
 
-sealed class ApiResponse<T>() {
+sealed class ApiResponse<T> {
 
     companion object {
         fun <T> create(error: Throwable): ApiErrorResponse<T> = ApiErrorResponse(

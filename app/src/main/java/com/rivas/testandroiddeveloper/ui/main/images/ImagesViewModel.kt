@@ -31,12 +31,4 @@ class ImagesViewModel(firebaseStorage: FirebaseStorage) : CoroutinesViewModel() 
             }
         }
     }
-
-    internal inner class MyFailureListener : OnFailureListener {
-        override fun onFailure(exception: Exception) {
-            val errorCode = (exception as StorageException).errorCode
-            val errorMessage = exception.message
-            // test the errorCode and errorMessage, and handle accordingly
-        }
-    }
 }

@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.rivas.testandroiddeveloper.databinding.MovieRvViewBinding
+import com.rivas.testandroiddeveloper.databinding.ImageRvViewBinding
 
 class ImageAdapter :
     RecyclerView.Adapter<MainViewHolder>() {
@@ -22,7 +22,7 @@ class ImageAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = MovieRvViewBinding.inflate(inflater, parent, false)
+        val binding = ImageRvViewBinding.inflate(inflater, parent, false)
         return MainViewHolder(binding)
     }
 
@@ -41,4 +41,4 @@ class ImageAdapter :
     }
 }
 
-class MainViewHolder(val binding: MovieRvViewBinding) : RecyclerView.ViewHolder(binding.root)
+class MainViewHolder(val binding: ImageRvViewBinding) : RecyclerView.ViewHolder(binding.root)

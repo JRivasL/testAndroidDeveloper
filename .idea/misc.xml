@@ -12,6 +12,7 @@
         <entry key="app/src/main/res/layout/fragment_images.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_map.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_movies.xml" value="0.13645833333333332" />
+        <entry key="app/src/main/res/layout/image_rv_view.xml" value="0.13645833333333332" />
         <entry key="app/src/main/res/layout/movie_rv_view.xml" value="0.2556818181818182" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.2671875" />
       </map>
