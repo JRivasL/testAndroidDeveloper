@@ -1,5 +1,6 @@
 package com.rivas.testandroiddeveloper.ui.main.movies
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +9,9 @@ import android.view.ViewGroup
 import com.rivas.testandroiddeveloper.R
 import com.rivas.testandroiddeveloper.data.Movie
 import com.rivas.testandroiddeveloper.databinding.FragmentMoviesBinding
-import com.rivas.testandroiddeveloper.utils.extensions.observer
 import com.rivas.testandroiddeveloper.repository.room.movie.MovieRepository
 import com.rivas.testandroiddeveloper.ui.main.movies.adapter.MovieAdapter
+import com.rivas.testandroiddeveloper.utils.extensions.observer
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -62,6 +63,17 @@ class MoviesFragment : DaggerFragment() {
     private fun createObservers() {
         observerLocalMovies()
         observerLoader()
+        observerError()
+    }
+
+    private fun observerError() {
+        moviesViewModel._error.observer(viewLifecycleOwner, {
+            val builder = AlertDialog.Builder(context)
+            builder.setMessage(it.localizedMessage)
+                .setPositiveButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
+            builder.create()
+            builder.show()
+        })
     }
 
     private fun observerLoader() {

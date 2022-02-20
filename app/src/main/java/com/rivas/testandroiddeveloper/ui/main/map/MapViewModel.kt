@@ -2,6 +2,8 @@ package com.rivas.testandroiddeveloper.ui.main.map
 
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FirebaseFirestore
+import com.rivas.testandroiddeveloper.AndroidApp
+import com.rivas.testandroiddeveloper.R
 import com.rivas.testandroiddeveloper.core.CoroutinesViewModel
 import com.rivas.testandroiddeveloper.data.LocationFirestore
 import com.rivas.testandroiddeveloper.utils.Constants
@@ -25,6 +27,8 @@ class MapViewModel(
             }
         }.addOnFailureListener {
             _error.value = it.localizedMessage?.toApiException()
+        }.addOnCanceledListener {
+            _error.value = AndroidApp.appContext.getString(R.string.cant_read_locations).toApiException()
         }
     }
 }

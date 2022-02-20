@@ -1,5 +1,6 @@
 package com.rivas.testandroiddeveloper.ui.main.map
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -61,8 +62,20 @@ class MapFragment : DaggerFragment(), OnMapReadyCallback {
         requireActivity().setTitle(R.string.title_map)
     }
 
+    private fun observerError() {
+        mapViewModel._error.observer(viewLifecycleOwner, {
+            val builder = AlertDialog.Builder(context)
+            builder.setMessage(it.localizedMessage)
+                .setPositiveButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
+            builder.create()
+            builder.show()
+        })
+    }
+
+
     private fun createObservers() {
         locationsObserver()
+        observerError()
     }
 
     private fun locationsObserver() {

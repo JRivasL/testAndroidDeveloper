@@ -17,4 +17,5 @@
     <string name="cant_read_locations">records could not be read</string>
     <string name="select_image_or_capture">Select or capture image</string>
     <string name="upload_images">Upload Images</string>
+    <string name="ok">Ok</string>
 </resources>

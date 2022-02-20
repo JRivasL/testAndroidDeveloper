@@ -2,6 +2,7 @@ package com.rivas.testandroiddeveloper.ui.main.images
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -44,6 +45,11 @@ class ImagesFragment : Fragment() {
     }
 
     private fun initObservers() {
+        imagesObserver()
+        observerError()
+    }
+
+    private fun imagesObserver() {
         imagesViewModel.images.observer(viewLifecycleOwner, {
             listImagesToSend.remove(it)
             uploadAdapter()
@@ -138,6 +144,16 @@ class ImagesFragment : Fragment() {
         val mimeTypes = arrayOf("image/jpeg", "image/png")
         intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
         startActivityForResult(intent, SELECT_PICTURE)
+    }
+
+    private fun observerError() {
+        imagesViewModel._error.observer(viewLifecycleOwner, {
+            val builder = AlertDialog.Builder(context)
+            builder.setMessage(it.localizedMessage)
+                .setPositiveButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
+            builder.create()
+            builder.show()
+        })
     }
 
     private fun validatePermissionsStorage() {
