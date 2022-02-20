@@ -1,17 +1,32 @@
 package com.rivas.testandroiddeveloper.ui.main.movies
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import com.rivas.testandroiddeveloper.R
+import com.rivas.testandroiddeveloper.data.Movie
 import com.rivas.testandroiddeveloper.databinding.FragmentMoviesBinding
+import com.rivas.testandroiddeveloper.utils.extensions.observer
+import com.rivas.testandroiddeveloper.repository.room.movie.MovieRepository
+import com.rivas.testandroiddeveloper.ui.main.movies.adapter.MovieAdapter
+import dagger.android.support.AndroidSupportInjection
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
-class MoviesFragment : Fragment() {
+class MoviesFragment : DaggerFragment() {
 
-    private lateinit var moviesViewModel: MoviesViewModel
+    @Inject
+    lateinit var moviesViewModel: MoviesViewModel
+
+    @Inject
+    lateinit var moviesRepository: MovieRepository
+
+    private lateinit var adapter: MovieAdapter
+
+    private val movies = ArrayList<Movie>()
+
     private var _binding: FragmentMoviesBinding? = null
     private val binding get() = _binding!!
 
@@ -20,21 +35,64 @@ class MoviesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        moviesViewModel =
-            ViewModelProvider(this)[MoviesViewModel::class.java]
-
         _binding = FragmentMoviesBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        createObservers()
+        setupList()
+        setupTitle()
+        moviesViewModel.validateLocalData()
 
-        val textView: TextView = binding.textHome
-        moviesViewModel.text.observe(viewLifecycleOwner, {
-            textView.text = it
+        return binding.root
+    }
+
+    private fun setupTitle() {
+        requireActivity().setTitle(R.string.title_movies)
+    }
+
+    private fun setupList() {
+        adapter = MovieAdapter(moviesViewModel)
+        binding.rvHeroes.adapter = adapter
+    }
+
+    private fun addMovies(moviesAux: List<Movie>) {
+        if(moviesAux.isNotEmpty() && moviesAux[0].page==moviesViewModel.page.toString())
+            this.movies.addAll(moviesAux)
+        adapter.setMovies(this.movies)
+    }
+
+    private fun createObservers() {
+        observerLocalMovies()
+        observerLoader()
+    }
+
+    private fun observerLoader() {
+        moviesViewModel.addObserver.observer(viewLifecycleOwner, {
+            if(it)
+                observerMovies()
         })
-        return root
+    }
+
+    private fun observerLocalMovies() {
+        moviesViewModel.movies.observer(viewLifecycleOwner, {
+            addMovies(it)
+        })
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        AndroidSupportInjection.inject(this)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun observerMovies() {
+        moviesRepository.findByPage(moviesViewModel.page.toString())
+            .observer(viewLifecycleOwner) {
+                addMovies(it)
+                moviesRepository.findByPage(moviesViewModel.page.toString())
+                    .removeObservers(viewLifecycleOwner)
+            }
     }
 }

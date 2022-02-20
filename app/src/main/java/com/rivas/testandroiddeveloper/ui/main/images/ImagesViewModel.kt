@@ -1,7 +1,7 @@
 package com.rivas.testandroiddeveloper.ui.main.images
 
-import androidx.lifecycle.ViewModel
+import com.rivas.testandroiddeveloper.core.CoroutinesViewModel
 
-class ImagesViewModel : ViewModel() {
+class ImagesViewModel : CoroutinesViewModel() {
     // TODO: Implement the ViewModel
 }

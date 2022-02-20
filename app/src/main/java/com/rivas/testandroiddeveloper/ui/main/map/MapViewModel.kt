@@ -1,13 +1,30 @@
 package com.rivas.testandroiddeveloper.ui.main.map
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.google.firebase.firestore.FirebaseFirestore
+import com.rivas.testandroiddeveloper.core.CoroutinesViewModel
+import com.rivas.testandroiddeveloper.data.LocationFirestore
+import com.rivas.testandroiddeveloper.utils.Constants
+import com.rivas.testandroiddeveloper.utils.extensions.toApiException
 
-class MapViewModel : ViewModel() {
+class MapViewModel(
+    private val firestore: FirebaseFirestore
+) : CoroutinesViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+    val listLocationsLiveData = MutableLiveData<ArrayList<LocationFirestore>>()
+
+    fun loadLocations() {
+        val listLocations :ArrayList<LocationFirestore> = ArrayList()
+        firestore.collection(Constants.LOCATIONS).get().addOnSuccessListener { result ->
+            for (document in result) {
+                val location = LocationFirestore(document.getDouble("latitude"), document.getDouble("longitude"), document.getString("date")!!)
+                listLocations.add(location)
+                if(result.last() == document){
+                    listLocationsLiveData.postValue(listLocations)
+                }
+            }
+        }.addOnFailureListener {
+            _error.value = it.localizedMessage?.toApiException()
+        }
     }
-    val text: LiveData<String> = _text
 }

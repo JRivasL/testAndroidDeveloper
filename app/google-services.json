@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "753783148549",
+    "project_id": "testandroiddeveloper",
+    "storage_bucket": "testandroiddeveloper.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:753783148549:android:42d2cfcbaa2ef09ac24c6c",
+        "android_client_info": {
+          "package_name": "com.rivas.testandroiddeveloper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "753783148549-iospbp1drhni80837picqhlnuko4l78u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rivas.testandroiddeveloper",
+            "certificate_hash": "c999f64ae21b7d3519412c2f2ad63d03ed9df717"
+          }
+        },
+        {
+          "client_id": "753783148549-6bah78cpf3eforgn4h7c138id8pnuom3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFEaT5B3fJFoHasJ9mK3ph1YvXPSockqM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "753783148549-6bah78cpf3eforgn4h7c138id8pnuom3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
