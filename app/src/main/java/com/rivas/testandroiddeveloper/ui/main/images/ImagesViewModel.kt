@@ -26,8 +26,6 @@ class ImagesViewModel(firebaseStorage: FirebaseStorage) : CoroutinesViewModel() 
                 images.postValue(image)
             }.removeOnCanceledListener {
                 _error.value = AndroidApp.appContext.getString(R.string.cant_read_locations).toApiException()
-            }.removeOnProgressListener {
-                _error.value = AndroidApp.appContext.getString(R.string.cant_read_locations).toApiException()
             }
         }
     }
