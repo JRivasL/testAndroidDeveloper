@@ -50,7 +50,7 @@ class MoviesFragment : DaggerFragment() {
 
     private fun setupList() {
         adapter = MovieAdapter(moviesViewModel)
-        binding.rvHeroes.adapter = adapter
+        binding.rvMovies.adapter = adapter
     }
 
     private fun addMovies(moviesAux: List<Movie>) {

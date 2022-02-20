@@ -15,4 +15,6 @@
     <string name="success_update_location">Location update success.</string>
     <string name="failure_update_location">Location update failure.</string>
     <string name="cant_read_locations">records could not be read</string>
+    <string name="select_image_or_capture">Select or capture image</string>
+    <string name="upload_images">Upload Images</string>
 </resources>

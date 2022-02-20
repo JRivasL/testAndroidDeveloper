@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.rivas.testandroiddeveloper.data.Movie
 import com.rivas.testandroiddeveloper.databinding.MovieRvViewBinding
+import com.rivas.testandroiddeveloper.ui.main.images.adapter.MainViewHolder
 import com.rivas.testandroiddeveloper.ui.main.movies.MoviesViewModel
 import com.rivas.testandroiddeveloper.utils.extensions.loadImage
 import com.rivas.testandroiddeveloper.utils.extensions.toDate

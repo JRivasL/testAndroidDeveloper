@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ButtonTransparent" >
+        <item name="backgroundColor">@color/black_55</item>
+    </style>
+</resources>

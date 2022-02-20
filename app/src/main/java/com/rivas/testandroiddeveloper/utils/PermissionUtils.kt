@@ -1,6 +1,7 @@
 package com.rivas.testandroiddeveloper.utils
 
 import android.Manifest
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.DialogInterface
@@ -15,13 +16,13 @@ import com.rivas.testandroiddeveloper.R
 object PermissionUtils {
     @JvmStatic
     fun requestPermission(
-        activity: AppCompatActivity, requestId: Int,
+        activity: Activity, requestId: Int,
         permission: String, finishActivity: Boolean
     ) {
         if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
             // Display a dialog with rationale.
             RationaleDialog.newInstance(requestId, finishActivity)
-                .show(activity.supportFragmentManager, "dialog")
+                .show((activity as AppCompatActivity).supportFragmentManager, "dialog")
         } else {
             // Location permission has not been granted yet, request it.
             ActivityCompat.requestPermissions(

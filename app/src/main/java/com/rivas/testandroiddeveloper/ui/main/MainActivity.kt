@@ -12,6 +12,8 @@ import com.rivas.testandroiddeveloper.R.id.*
 import com.rivas.testandroiddeveloper.databinding.ActivityMainBinding
 import android.content.Intent
 import com.rivas.testandroiddeveloper.services.ServiceSaveLocation
+import com.rivas.testandroiddeveloper.ui.main.images.ImagesFragment
+import com.rivas.testandroiddeveloper.utils.PermissionUtils
 import com.rivas.testandroiddeveloper.utils.PermissionUtils.isPermissionGranted
 import com.rivas.testandroiddeveloper.utils.PermissionUtils.requestPermission
 import dagger.android.support.DaggerAppCompatActivity

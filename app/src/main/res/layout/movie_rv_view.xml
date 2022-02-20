@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:padding="10dp"
     android:id="@+id/container"
-    tools:context=".ui.main.movies.adapter.MovieAdapter">
+    tools:context=".ui.main.images.adapter.MovieAdapter">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/img_movie"
