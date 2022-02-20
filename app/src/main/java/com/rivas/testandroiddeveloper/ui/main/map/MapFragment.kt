@@ -61,7 +61,6 @@ class MapFragment : DaggerFragment(), OnMapReadyCallback {
         requireActivity().setTitle(R.string.title_map)
     }
 
-
     private fun createObservers() {
         locationsObserver()
     }
